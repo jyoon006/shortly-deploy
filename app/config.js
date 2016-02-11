@@ -48,7 +48,7 @@ if (environment === 'development') {
 }
 
 else {
-  var Schema = mongoose.schema;
+  var Schema = mongoose.Schema;
 
   // moongoose.connect('127.0.0.1:1337');
   mongoose.connect('mongodb://oosij:asdf@ds061415.mongolab.com:61415/heroku_402lncjz');

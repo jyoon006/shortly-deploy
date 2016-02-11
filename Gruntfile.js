@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['./public/lib/backbone.js', './public/lib/handlebars.js', './public/lib/jquery.js', './public/lib/underscore.js'],
+        dest: 'dist/built.js',
+      },
     },
 
     mochaTest: {
@@ -21,10 +28,14 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      build: {
+        src: 'dist/built.js',
+        dest: 'dist/built.min.js'
+      }
     },
 
     jshint: {
-      files: [
+      files: ['Gruntfile.js', 'test/**/*.js'
         // Add filespec list here
       ],
       options: {
@@ -38,6 +49,15 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'public',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dist/css',
+          ext: '.min.css'
+        }]
+      }
     },
 
     watch: {
@@ -108,5 +128,10 @@ module.exports = function(grunt) {
     // add your deploy tasks here
   ]);
 
+  grunt.registerTask('default', [
+    
+    'cssmin'
+    
+  ]);
 
 };

@@ -46,18 +46,11 @@ var mongoose = require('mongoose');
 
   
 
-  userSchema.methods.comparePassword = function(attemptedPassword, savedPassword, callback) {
+  userSchema.comparePassword = function(attemptedPassword, savedPassword, callback) {
     bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
       callback(isMatch);
       });
   }
-  // userSchema.methods.hashPassword = function() {
-  //   var cipher = Promise.promisify(bcrypt.hash);
-  //     return cipher(this.password, null, null).bind(this)
-  //       .then(function(hash) {
-  //         this.password = hash;
-  //       });
-  // }
 
   userSchema.pre('save', function(next) {
     var cipher = Promise.promisify(bcrypt.hash);

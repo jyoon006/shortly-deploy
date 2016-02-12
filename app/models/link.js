@@ -28,7 +28,7 @@ var mongoose = require('mongoose');
     base_url: String,
     code: String,
     title: String,
-    visit: {
+    visits: {
       type: Number,
       default: 0
     }

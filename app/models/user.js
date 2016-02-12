@@ -51,22 +51,25 @@ var mongoose = require('mongoose');
       callback(isMatch);
       });
   }
+  // userSchema.methods.hashPassword = function() {
+  //   var cipher = Promise.promisify(bcrypt.hash);
+  //     return cipher(this.password, null, null).bind(this)
+  //       .then(function(hash) {
+  //         this.password = hash;
+  //       });
+  // }
 
-  userSchema.methods.hashPassword = function() {
+  userSchema.pre('save', function(next) {
     var cipher = Promise.promisify(bcrypt.hash);
       return cipher(this.password, null, null).bind(this)
         .then(function(hash) {
           this.password = hash;
         });
-  }
-
-  userSchema.pre('save', function(next) {
-    console.log('hashpassword', this);
-    this.hashPassword();
+    
     next();
   })
 
   var User = mongoose.model('User', userSchema);
-  
+
 module.exports = User;
 

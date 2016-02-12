@@ -44,9 +44,9 @@ var mongoose = require('mongoose');
   });
 
 
-  var User = mongoose.model('User', userSchema);
+  
 
-  User.comparePassword = function(attemptedPassword, savedPassword, callback) {
+  userSchema.comparePassword = function(attemptedPassword, savedPassword, callback) {
     bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
       callback(isMatch);
       });
@@ -63,7 +63,7 @@ var mongoose = require('mongoose');
     
   })
 
-  
+  var User = mongoose.model('User', userSchema);
 
 module.exports = User;
 

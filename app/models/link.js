@@ -28,7 +28,10 @@ var mongoose = require('mongoose');
     base_url: String,
     code: String,
     title: String,
-    visit: Number
+    visit: {
+      type: Number,
+      default: 0
+    }
   }, {
     timestamps: true
   });

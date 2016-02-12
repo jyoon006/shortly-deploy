@@ -64,9 +64,10 @@ var mongoose = require('mongoose');
       return cipher(this.password, null, null).bind(this)
         .then(function(hash) {
           this.password = hash;
+          next();
         });
     
-    next();
+    
   })
 
   var User = mongoose.model('User', userSchema);

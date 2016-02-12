@@ -46,7 +46,7 @@ var mongoose = require('mongoose');
 
   
 
-  userSchema.comparePassword = function(attemptedPassword, savedPassword, callback) {
+  User.comparePassword = function(attemptedPassword, savedPassword, callback) {
     bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
       callback(isMatch);
       });
